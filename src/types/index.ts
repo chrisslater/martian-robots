@@ -2,8 +2,10 @@ export interface Input {
 
 }
 
-export type Direction = 'F' | 'L' | 'R';
-export type CoordinateTuple = [ number, number, string ];
+export type Movement = 'F' | 'L' | 'R';
+export type Direction = 'N' | 'E' | 'S' | 'W';
+export type CoordinateTuple = [ number, number ];
+export type CoordinateWithDirectionTuple = [ number, number, Direction ];
 
 export interface Engine {
   /**
@@ -27,7 +29,7 @@ export interface Grid {
   /**
    * Generate a new coordinate based on new move and existing coordinate
    */
-  generateMove(instruction: Direction, coordinate: CoordinateTuple): CoordinateTuple;
+  generateMove(movement: Movement, coordinate: CoordinateWithDirectionTuple): CoordinateWithDirectionTuple;
 
   /**
    * Set any current dead grid positions to ignore when generating a move

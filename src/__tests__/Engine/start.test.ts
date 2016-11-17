@@ -1,31 +1,36 @@
 import test from 'ava';
 import { Engine } from '../../Engine';
 
-
-test.beforeEach(t => {
-  t.context.mockGridSize = [5, 3];
-  t.context.mockStartPosition = [1, 1, 'E'];
-  t.context.mockInstructions = ['R', 'F', 'R', 'F'];
-});
+function createContext() {
+  const context = {
+    mockGridSize: [5, 3],
+    mockInstructions: ['R', 'F', 'R', 'F'],
+    mockStartPosition: [1, 1, 'E'],
+  };
+  return context;
+}
 
 test('#start() should call Grid.generateMove() 4 times', t => {
   t.plan(4);
+  const context = createContext();
 
   const mockGrid = {
     generateMove() {
       t.pass();
     },
+
+    setGridSize() {}
   };
 
   const engine = new Engine(mockGrid);
-  engine.setGridSize(t.context.mockGridSize);
-  engine.setStartPosition(t.context.mockStartPosition);
-  engine.setInstructions(t.context.mockInstructions);
-  const result = engine.start();
-
+  engine.setGridSize(context.mockGridSize);
+  engine.setStartPosition(context.mockStartPosition);
+  engine.setInstructions(context.mockInstructions);
+  engine.start();
 });
 
 test('#start() should return an array of coordinates', t => {
+  const context = createContext();
   let times = 0;
   const mockMoves = [
     [1, 1, 'S'],
@@ -34,16 +39,19 @@ test('#start() should return an array of coordinates', t => {
     [0, 0, 'W'],
   ];
   const mockGrid = {
-    generateMove() {
+    generateMove(coordinate: any) {
       const coord = mockMoves[times];
       times++;
       return coord;
-    }
+    },
+    setGridSize() {},
+    setDeadZones() {},
   };
+
   const engine = new Engine(mockGrid);
-  engine.setGridSize(t.context.mockGridSize);
-  engine.setStartPosition(t.context.mockStartPosition);
-  engine.setInstructions(t.context.mockInstructions);
+  engine.setGridSize(context.mockGridSize);
+  engine.setStartPosition(context.mockStartPosition);
+  engine.setInstructions(context.mockInstructions);
   const result = engine.start();
-  test.deepEqual(result, mockMoves);
+  t.deepEqual(result, mockMoves);
 });
