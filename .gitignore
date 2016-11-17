@@ -1,0 +1,9 @@
+.DS_Store
+
+dist
+node_modules
+npm-debug.log
+
+# NYC generated
+.nyc_output
+/coverage

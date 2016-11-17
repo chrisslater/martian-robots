@@ -1,0 +1,26 @@
+{
+  "name": "ts-starter-kit",
+  "version": "0.1.0",
+  "description": "Typescript starter kit",
+  "main": "dist/lib/index.js",
+  "scripts": {
+    "test": "tsc && ava",
+    "test:test": "tsc -p tsconfig.test.json && nyc ava",
+    "report": "nyc report --reporter=html"
+  },
+  "author": "Christopher Slater",
+  "license": "ISC",
+  "ava": {
+    "files": [
+      "dist/tests/**/__tests__/**/*.test.js"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/core-js": "^0.9.34",
+    "@types/node": "^6.0.48",
+    "ava": "^0.16.0",
+    "nyc": "^9.0.1",
+    "typescript": "^2.0.10"
+  }
+}
