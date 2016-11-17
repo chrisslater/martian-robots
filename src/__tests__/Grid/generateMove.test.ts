@@ -2,7 +2,7 @@ import test from 'ava';
 import { Grid } from '../../Grid';
 
 // Pointing North and moving forwards
-test('#generateMove() should return a [0, 1, `N`]', t => {
+test('Pointing North and moving forwards should return [0, 1, `N`]', t => {
   const grid = new Grid();
   const [x, y, d] = grid.generateMove('F', [0, 0, 'N']);
   t.is(x, 0);
@@ -11,11 +11,9 @@ test('#generateMove() should return a [0, 1, `N`]', t => {
 });
 
 // Pointing North and moving forwards
-test('#generateMove() should return a [3, 4, `N`, `FAIL`]', t => {
+test('Pointing North and moving forwards should return [3, 4, `N`, `LOST`]', t => {
   const grid = new Grid();
-
   grid.setGridSize([3, 3]);
-
   const [x, y, d, l] = grid.generateMove('F', [3, 3, 'N']);
 
   t.is(x, 3);
@@ -43,7 +41,7 @@ test('Pointing North and turning Right should return [0, 0, `E`]', t => {
 });
 
 // Pointing East and moving forwards
-test('#generateMove() should return a coordinate and direction', t => {
+test('Pointing East and moving forwards should return [1, 0, `E`]', t => {
   const grid = new Grid();
   const [x, y, d] = grid.generateMove('F', [0, 0, 'E']);
   t.is(x, 1);
@@ -51,11 +49,9 @@ test('#generateMove() should return a coordinate and direction', t => {
   t.is(d, 'E');
 });
 
-test('#generateMove() should return a [4, 3, `E`, `FAIL`]', t => {
+test('Pointing East and going beyond boundry should return [4, 3, `E`, `LOST`]', t => {
   const grid = new Grid();
-
   grid.setGridSize([3, 3]);
-
   const [x, y, d, l] = grid.generateMove('F', [3, 3, 'E']);
 
   t.is(x, 4);
@@ -65,9 +61,8 @@ test('#generateMove() should return a [4, 3, `E`, `FAIL`]', t => {
 });
 
 // Pointing South and moving forwards
-test('heading forward and South should generate [0, -1, `S`, `LOST`]', t => {
+test('Pointing South and moving forwards should generate [0, -1, `S`, `LOST`]', t => {
   const grid = new Grid();
-
   const [x, y, d, l] = grid.generateMove('F', [0, 0, 'S']);
   t.is(x, 0);
   t.is(y, -1);
@@ -76,7 +71,7 @@ test('heading forward and South should generate [0, -1, `S`, `LOST`]', t => {
 });
 
 // Pointing West and moving forwards
-test('heading forward and West should generate [-1, 0, `W`, `LOST`]', t => {
+test('Pointing West and moving forwards should generate [-1, 0, `W`, `LOST`]', t => {
   const grid = new Grid();
   const [x, y, d, l] = grid.generateMove('F', [0, 0, 'W']);
 
