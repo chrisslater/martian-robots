@@ -23,6 +23,7 @@ export class Grid implements Types.Grid {
       case 'R':
         return this.updateDirection(movement, coordinate);
       default:
+        throw new Error('Move is not valid');
     }
   }
 
@@ -67,6 +68,7 @@ export class Grid implements Types.Grid {
         }
         return newCoords;
       default:
+        throw new Error('Direction is not valid');
     }
   }
 
