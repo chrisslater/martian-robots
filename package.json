@@ -1,10 +1,10 @@
 {
-  "name": "ts-starter-kit",
+  "name": "Martian Robots",
   "version": "0.1.0",
-  "description": "Typescript starter kit",
+  "description": "",
   "main": "dist/lib/index.js",
   "scripts": {
-    "install": "tsc -p tsconfig.test.json",
+    "build": "tsc -p tsconfig.test.json",
     "test": "nyc ava",
     "test:report": "nyc report --reporter=html"
   },
