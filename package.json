@@ -4,9 +4,8 @@
   "description": "Typescript starter kit",
   "main": "dist/lib/index.js",
   "scripts": {
-    "test": "tsc -p tsconfig.test.json && nyc ava",
-    "test:watch:ava": "ava -w",
-    "test:watch:tsc": "tsc -w -p tsconfig.test.json",
+    "install": "tsc -p tsconfig.test.json",
+    "test": "nyc ava",
     "test:report": "nyc report --reporter=html"
   },
   "author": "Christopher Slater",
@@ -14,9 +13,6 @@
   "ava": {
     "files": [
       "dist/tests/**/__tests__/**/*.test.js"
-    ],
-    "sources": [
-      "src/**/*"
     ]
   },
   "dependencies": {},

@@ -17,6 +17,7 @@ test('#start() should call Grid.generateMove() 4 times', t => {
   const mockGrid = {
     generateMove() {
       t.pass();
+      return [];
     },
 
     setGridSize() {}
@@ -32,12 +33,14 @@ test('#start() should call Grid.generateMove() 4 times', t => {
 test('#start() should return an array of coordinates', t => {
   const context = createContext();
   let times = 0;
+  const startMove = [ [1, 1, 'E'] ];
   const mockMoves = [
     [1, 1, 'S'],
     [1, 0, 'S'],
     [1, 0, 'W'],
     [0, 0, 'W'],
   ];
+  const moves = startMove.concat(mockMoves);
   const mockGrid = {
     generateMove(coordinate: any) {
       const coord = mockMoves[times];
@@ -53,5 +56,5 @@ test('#start() should return an array of coordinates', t => {
   engine.setStartPosition(context.mockStartPosition);
   engine.setInstructions(context.mockInstructions);
   const result = engine.start();
-  t.deepEqual(result, mockMoves);
+  t.deepEqual(result, moves);
 });
